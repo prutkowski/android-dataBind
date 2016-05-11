@@ -1,13 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
-        <variable name="viewModel" type="com.pawel_rutkowski.databind.model.MainViewModel"/>
+        <variable name="firstUser" type="com.pawel_rutkowski.databind.model.User"/>
+        <variable name="secondUser" type="com.pawel_rutkowski.databind.model.User"/>
+        <variable
+            name="handlers"
+            type="com.pawel_rutkowski.databind.model.Handlers"/>
     </data>
     <LinearLayout
         android:orientation="vertical" 
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@{firstUser.foo}"/>
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@{firstUser.bar}"/>
+            <Button
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:text="click"
+                android:onClick="@{firstUser.getDeleted ? handlers.onClickDeleted : handlers.onClickCurrent}"
+                android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@{secondUser.foo}"/>
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@{secondUser.bar}"/>
+            <Button
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:text="click"
+                android:onClick="@{secondUser.getDeleted ? handlers.onClickDeleted : handlers.onClickCurrent}"
+                android:layout_weight="1"/>
+        </LinearLayout>
     </LinearLayout>
 </layout>
